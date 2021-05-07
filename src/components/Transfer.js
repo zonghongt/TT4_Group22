@@ -46,7 +46,7 @@ export const AddTransaction = (props) => {
         <h3>Transfer Money</h3>
         <form onSubmit={handleSubmit}>
           <label>
-            Customer ID
+            Payee ID
             <input type="text" value={this.state.value} onChange={handleChange} />
           </label>
           <label>
@@ -57,7 +57,10 @@ export const AddTransaction = (props) => {
             Amount
             <input type="number" value={this.state.value} onChange={handleChange} />
           </label>
-
+          <label>
+            Message
+            <input type="text" value={this.state.value} onChange={handleChange} />
+          </label>
           <input type="submit" value="Submit" />
       </form>
       </>

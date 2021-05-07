@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from './styles';
 
+import UserInfo from './UserInfo.js'
+
 const Mainpage = (props) => {
     const [menu, setMenuId] = useState(0)
     const [toggleBal, setToggleBal] = useState(false)
@@ -30,7 +32,7 @@ const Mainpage = (props) => {
                 </Navbar.Collapse>
             </Navbar>
             {//the showing of information depends on the menu
-                (menu == 1) && <h1>ViewInfo</h1>//&& <ViewInfo {...props}></ViewInfo>
+                (menu == 1) && <UserInfo {...props}></UserInfo>
             }
             {
                 (menu == 2) && <h1>ViewBalance</h1> //<ViewBalance {...props}></ViewBalance>

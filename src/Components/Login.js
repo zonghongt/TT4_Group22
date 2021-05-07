@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Button } from '@material-ui/core';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Form, Col, Row, Container } from 'react-bootstrap';
 import { LoginPanel, DbsLogo, LoginWrapper } from './styles';
 import DBSImage from '../images/dbs-logo.png';
-
+import Popup from 'reactjs-popup';
 
 const Login = (props) => {
 
+    
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -52,12 +53,6 @@ const Login = (props) => {
                     <Form onSubmit={handleSubmit}>
 
                         <h3>Log in</h3>
-
-                        {/*}
-                        <h1>username = {state.username}</h1>
-                        <h1>password = {state.password}</h1>
-                        <h3>accountInfo = {JSON.stringify(state.accountInfo)}</h3>
-                        */}
 
                         <Form.Group as={Row} controlId="formHorizontalEmail">
                             <Form.Label column sm={2}>

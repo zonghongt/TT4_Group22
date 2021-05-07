@@ -31,3 +31,10 @@ export const Link = styled.div`
   background: ${(props)=>props.navId == props.menu?'green':'none'};
   padding: 10px;
 `;
+export const UserInfoWrapper = styled.div`
+  margin: 300px;
+  border: 1px solid;
+  box-shadow: 5px 10px;
+  border-radius: 10px;
+`;
+

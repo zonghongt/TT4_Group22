@@ -3,9 +3,7 @@ import './App.css';
 import {Balance} from './components/Balance';
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: ''
-})
+//how to call API 
 
 function App() {
   return (

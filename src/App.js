@@ -15,7 +15,7 @@ class App extends Component {//ES6 class to define component
     super(props);
     this.state = {
       username: "Group22",
-      password: "xkQL1UGIO3mPUw",
+      password: "xkQL1UVGlO3mPUw",
       open: false,
       loading: false,
       accountInfo: {}

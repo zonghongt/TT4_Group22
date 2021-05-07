@@ -1,12 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-
+import { Link } from './styles';
 
 const Mainpage = (props) => {
     const [menu, setMenuId] = useState(0)
     const [toggleBal, setToggleBal] = useState(false)
     const [Bal, setBal] = useState(true)
+
+    const handleLogout = () => {
+        props.history.push('/');
+    }
+
+    //console.log("props", props)
 
     return (
         <React.Fragment> {/*Component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM. */}
@@ -15,26 +21,26 @@ const Mainpage = (props) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
-                        <a class="nav-item nav-link px-3" onClick={() => setMenuId(1)}>User Information</a>
-                        <a class="nav-item nav-link px-3" onClick={() => setMenuId(2)}>View Balance</a>
-                        <a class="nav-item nav-link px-3" onClick={() => setMenuId(3)}>Transaction History</a>
-                        <a class="nav-item nav-link px-3" onClick={() => setMenuId(4)}>Transfer</a>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+                        <Link class="nav-item nav-link px-3" navId = {1} menu={menu} onClick={() => setMenuId(1)}>User Information</Link>
+                        <Link class="nav-item nav-link px-3" navId = {2} menu={menu} onClick={() => setMenuId(2)}>View Balance</Link>
+                        <Link class="nav-item nav-link px-3" navId = {3} menu={menu} onClick={() => setMenuId(3)}>Transaction History</Link>
+                        <Link class="nav-item nav-link px-3" navId = {4} menu={menu} onClick={() => setMenuId(4)}>Transfer</Link>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={handleLogout}>Logout</button>
                     </Nav> 
                 </Navbar.Collapse>
             </Navbar>
-
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-
+            {//the showing of information depends on the menu
+                (menu == 1) && <h1>ViewInfo</h1>//&& <ViewInfo {...props}></ViewInfo>
+            }
+            {
+                (menu == 2) && <h1>ViewBalance</h1> //<ViewBalance {...props}></ViewBalance>
+            }
+            {
+                (menu == 3) && <h1>TransactionHistory</h1>//<TransactionHistory {...props}></TransactionHistory>
+            }
+            {
+                (menu == 4) && <h1>Transfer</h1>//<Transfer {...props}></Transfer>
+            }
         </React.Fragment>
     )
 }

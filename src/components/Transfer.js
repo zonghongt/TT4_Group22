@@ -1,41 +1,65 @@
 import React, {useState} from 'react'
 
-// import { GlobalContext } from '../context/GlobalState';
 
-export const AddTransaction = () => {
-    const [text, setText] = useState('');
-    const [amount, setAmount] = useState(0);
-  
-    // const { addTransaction } = useContext(GlobalContext);
-  
-    // const onSubmit = e => {
-    //   e.preventDefault();
-  
-    //   const newTransaction = {
-    //     id: Math.floor(Math.random() * 100000000),
-    //     text,
-    //     amount: +amount
-    //   }
-  
-    //   addTransaction(newTransaction);
-    // }
+
+export const AddTransaction = (props) => {
+
+    useEffect(() => {
+      const accountInfo = props?.mystate?.accountInfo?.accountKey
+  }, [])
+
+    const handleChange = (event) => {
+      this.setState({value: event.target.value});
+    }
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      fetch('https://ipllrj2mq8.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/add', {
+          method: 'POST',//POST method
+          headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'x-api-key': '2jaIOnu18S6GcL4CB70w4d3PgB9rcvq74boP2yNe'//token key
+          },
+          body: JSON.stringify({// body data type must match username and password
+              username: props?.mystate?.statusCode,
+              password: props?.mystate?.message,
+          })
+      })//if successful fetch and it match body match username and password
+          .then(response => response.text())
+          .then(data => {
+              try {
+                  var responseJson = JSON.parse(data);
+                  console.log("responseJson", responseJson);
+                  //console.log(props);
+                  props.handleAccountInfo(responseJson);
+                  console.log(props);
+                  props.history.push('/Mainpage');
+              }
+              catch (e) {
+                  console.log(e)
+              }
+          });
+  };
   
     return (
       <>
-        <h3>Add new transaction</h3>
-        <form onSubmit={onSubmit}>
-          <div className="form-control">
-            <label htmlFor="text">Text</label>
-            <input type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Enter text..." />
-          </div>
-          <div className="form-control">
-            <label htmlFor="amount"
-              >Amount <br />
-              (negative - expense, positive - income)</label>
-            <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Enter amount..." />
-          </div>
-          <button className="btn">Add transaction</button>
-        </form>
+        <h3>Transfer Money</h3>
+        <form onSubmit={handleSubmit}>
+          <label>
+            Customer ID
+            <input type="text" value={this.state.value} onChange={handleChange} />
+          </label>
+          <label>
+            Account Key
+            <input type="number" value={this.state.value} onChange={handleChange} />
+          </label>
+          <label>
+            Amount
+            <input type="number" value={this.state.value} onChange={handleChange} />
+          </label>
+
+          <input type="submit" value="Submit" />
+      </form>
       </>
     )
   }

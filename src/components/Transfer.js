@@ -1,8 +1,12 @@
 import React, {useState, useEffect} from 'react'
 
 
+export const Transfer = (props) => {
 
-export const AddTransaction = (props) => {
+    const [payeeID, setpayeeID] = useState(0)
+    const [amount, setAmount] = useState(0)
+    const [eGift, seteGift] = useState(false)
+    const [message, setMessage] = useState("")
 
     useEffect(() => {
       const accountInfo = props?.mystate?.accountInfo?.accountKey
@@ -13,6 +17,7 @@ export const AddTransaction = (props) => {
     }
     const handleSubmit = (event) => {
       event.preventDefault();
+      //console.log("props", props)
       fetch('https://ipllrj2mq8.execute-api.ap-southeast-1.amazonaws.com/techtrek/transactions/add', {
           method: 'POST',//POST method
           headers: {
@@ -21,8 +26,12 @@ export const AddTransaction = (props) => {
               'x-api-key': '2jaIOnu18S6GcL4CB70w4d3PgB9rcvq74boP2yNe'//token key
           },
           body: JSON.stringify({// body data type must match username and password
-              username: props?.mystate?.statusCode,
-              password: props?.mystate?.message,
+              custID: props?.mystate?.accountInfo?.custID,
+              accountKey: props?.mystate?.accountInfo?.accountKey,
+              payeeID: payeeID,
+              amount: amount,
+              eGift: eGift,
+              message: message,
           })
       })//if successful fetch and it match body match username and password
           .then(response => response.text())
@@ -33,7 +42,7 @@ export const AddTransaction = (props) => {
                   //console.log(props);
                   props.handleAccountInfo(responseJson);
                   console.log(props);
-                  props.history.push('/Mainpage');
+                  //props.history.push('/Mainpage');
               }
               catch (e) {
                   console.log(e)
@@ -47,19 +56,19 @@ export const AddTransaction = (props) => {
         <form onSubmit={handleSubmit}>
           <label>
             Payee ID
-            <input type="text" value={this.state.value} onChange={handleChange} />
+            <input type="number" onChange={setpayeeID} />
           </label>
-          <label>
-            Account Key
-            <input type="number" value={this.state.value} onChange={handleChange} />
-          </label>
+          {/* <label>
+            eGift
+            <input type="boolean"  onChange={seteGift} />
+          </label> */}
           <label>
             Amount
-            <input type="number" value={this.state.value} onChange={handleChange} />
+            <input type="number" onChange={setAmount} />
           </label>
           <label>
             Message
-            <input type="text" value={this.state.value} onChange={handleChange} />
+            <input type="text"  onChange={setMessage} />
           </label>
           <input type="submit" value="Submit" />
       </form>

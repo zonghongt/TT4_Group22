@@ -4,6 +4,9 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from './styles';
 
 import UserInfo from './UserInfo.js'
+import {Balance} from './Balance.js'
+import {Transfer} from './Transfer.js'
+
 
 const Mainpage = (props) => {
     const [menu, setMenuId] = useState(0)
@@ -35,13 +38,13 @@ const Mainpage = (props) => {
                 (menu == 1) && <UserInfo {...props}></UserInfo>
             }
             {
-                (menu == 2) && <h1>ViewBalance</h1> //<ViewBalance {...props}></ViewBalance>
+                (menu == 2) && <Balance {...props}></Balance>
             }
             {
                 (menu == 3) && <h1>TransactionHistory</h1>//<TransactionHistory {...props}></TransactionHistory>
             }
             {
-                (menu == 4) && <h1>Transfer</h1>//<Transfer {...props}></Transfer>
+                (menu == 4) && <Transfer {...props}></Transfer>
             }
         </React.Fragment>
     )

@@ -6,6 +6,7 @@ import { Link } from './styles';
 import UserInfo from './UserInfo.js'
 import {Balance} from './Balance.js'
 import {Transfer} from './Transfer.js'
+import {History} from './History.js'
 
 
 const Mainpage = (props) => {
@@ -41,7 +42,7 @@ const Mainpage = (props) => {
                 (menu == 2) && <Balance {...props}></Balance>
             }
             {
-                (menu == 3) && <h1>TransactionHistory</h1>//<TransactionHistory {...props}></TransactionHistory>
+                (menu == 3) && <History {...props}></History>
             }
             {
                 (menu == 4) && <Transfer {...props}></Transfer>

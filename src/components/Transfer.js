@@ -40,7 +40,7 @@ export const Transfer = (props) => {
                   var responseJson = JSON.parse(data);
                   console.log("responseJson", responseJson);
                   //console.log(props);
-                  props.handleAccountInfo(responseJson);
+                  //props.handleAccountInfo(responseJson);
                   console.log(props);
                   //props.history.push('/Mainpage');
               }
